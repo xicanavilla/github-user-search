@@ -9,14 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var instructionalText: UILabel!
-    
-    @IBOutlet weak var resultsTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.orange
         // Do any additional setup after loading the view.
+        
     }
 
 
