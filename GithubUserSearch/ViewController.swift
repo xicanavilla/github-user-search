@@ -56,9 +56,9 @@ class ViewController: UIViewController {
         //constraints between the two, if you skip that step and add constraints
         //between them it will crash
         
-        //This is the fast way of activating multiple constraints
+        //NSLayoutconstraint.activate([array]) is the fast way of activating multiple constraints
         //If you do it like I did the heigthAnchor with isActive = true
-        //its just more cumbersone to write that for EVERY constraint lol 😂
+        //its just way more cumbersone to write that for EVERY constraint lol 😂
         //like the one above could have been written as follows and it would be the same
 //        NSLayoutConstraint.activate([
 //            myTopView.heightAnchor.constraint(equalToConstant: 100)
