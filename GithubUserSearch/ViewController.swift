@@ -56,6 +56,14 @@ class ViewController: UIViewController {
         //constraints between the two, if you skip that step and add constraints
         //between them it will crash
         
+        //This is the fast way of activating multiple constraints
+        //If you do it like I did the heigthAnchor with isActive = true
+        //its just more cumbersone to write that for EVERY constraint lol 😂
+        //like the one above could have been written as follows and it would be the same
+//        NSLayoutConstraint.activate([
+//            myTopView.heightAnchor.constraint(equalToConstant: 100)
+//        ])
+        
         NSLayoutConstraint.activate([
             myTopView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0),
             myTopView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0),
@@ -64,6 +72,8 @@ class ViewController: UIViewController {
         
         //This will create a view which I earlier set to 100 tall, that will pin to the
         //left, top and right edges
+        
+
         
         
         //TODO: Create a purple view that is 250 tall and pin it to the left, bottom and right edges
