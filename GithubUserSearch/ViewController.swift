@@ -25,7 +25,7 @@ class ViewController: UIViewController {
          *      annoying but this has to be set to false to any view
          *      using constraints. Honestly not really sure what it
          *      does.
-         * 3. set topAnchor, leftAnchor, rightAnchor, heightAnchor, 
+         * 3. set topAnchor, leftAnchor, rightAnchor, heightAnchor,
          *    to the constraints you want
          *
          */
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         //left, top and right edges
         
         
-        //TODO: Create a purple view and pin that is 250 tall and pin it to the left, bottom and right edges
+        //TODO: Create a purple view that is 250 tall and pin it to the left, bottom and right edges
         
         
     }
