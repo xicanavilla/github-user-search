@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
-        salvadorsSetupView()
+        margaritasSetupView()
         
     }
     
@@ -33,7 +33,8 @@ class ViewController: UIViewController {
         //#1
         let stackView = UIStackView()
         //#2 axis property
-        stackView.axis = .vertical //try experimenting and set it to horizontal and see what happens
+        stackView.axis = .vertical
+        //try experimenting and set it to horizontal and see what happens
         //#3 set distribution property to fillEqually
         stackView.distribution = .fillEqually
         //#4 create the views and add them to the stack view with the addArrangedSubview method
@@ -70,6 +71,40 @@ class ViewController: UIViewController {
     }
     
     private func margaritasSetupView() {
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        let firstView = UIView()
+        firstView.backgroundColor = .red
+        let secondView = UIView()
+        secondView.backgroundColor = .orange
+        let thirdView = UIView()
+        thirdView.backgroundColor = .magenta
+        let fourthView = UIView()
+        fourthView.backgroundColor = .purple
+        let fifthView = UIView()
+        fifthView.backgroundColor = .blue
+        
+        stackView.addArrangedSubview(firstView)
+        stackView.addArrangedSubview(secondView)
+        stackView.addArrangedSubview(thirdView)
+        stackView.addArrangedSubview(fourthView)
+        stackView.addArrangedSubview(fifthView)
+        
+        self.view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stackView.heightAnchor.constraint(equalToConstant: 100),
+            stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 25),
+            stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -25),
+            stackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -25)
+        ])
+        
+        
+        
         
     }
     
