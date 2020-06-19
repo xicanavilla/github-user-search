@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         //Try adding spacing to the stackView.spacing property
         //I wouldn't change the fillEqually property
         //For the homework note that you can set a constraint on the height property of the stackView
-        
+        //Also last thing to experiment in the constraints change the constant property of 0 to different things try 25 for all of them, you may need to make some of them negative for it to look good
     }
     
     private func margaritasSetupView() {
