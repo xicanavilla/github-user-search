@@ -78,6 +78,29 @@ class ViewController: UIViewController {
         
         //TODO: Create a purple view that is 250 tall and pin it to the left, bottom and right edges
         
+        //creating myBottomView as an instance of UIView
+        let myBottomView = UIView()
+        
+        //setting background color of myBottomView to purple
+        myBottomView.backgroundColor = .purple
+        
+        //setting translatesAutoresizingMaskIntoConstraints to false
+        myBottomView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //adding myBottomeView as a subview of view
+        self.view.addSubview(myBottomView)
+        
+        //setting constraints of myBottomView so that it is pinned to bottom of view and height is equal to 250
+        NSLayoutConstraint.activate([
+            myBottomView.heightAnchor.constraint(equalToConstant: 250),
+            myBottomView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0),
+            myBottomView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0),
+            myBottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
+
+        ])
+        
+        
+        
         
     }
 
