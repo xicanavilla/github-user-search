@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        salvadorsSetupView()
+        margaritasSetupView()
         // Do any additional setup after loading the view.
         
     }
@@ -82,6 +82,50 @@ class ViewController: UIViewController {
         //view and then connects to the bottomStackView
         
         
+        
+        
+    }
+    
+    func margaritasSetupView() {
+        
+        let bottomStackView = UIStackView()
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bottomStackView)
+        
+        let leftBottomView = UIView()
+        leftBottomView.translatesAutoresizingMaskIntoConstraints = false
+        leftBottomView.backgroundColor = .darkGray
+        
+        let rightBottomView = UIView()
+        rightBottomView.translatesAutoresizingMaskIntoConstraints = false
+        rightBottomView.backgroundColor = .systemIndigo
+        
+        let viewsForBottomStack = [leftBottomView, rightBottomView]
+        for item in viewsForBottomStack {
+            bottomStackView.addArrangedSubview(item)
+        }
+        
+        NSLayoutConstraint.activate([
+            leftBottomView.widthAnchor.constraint(equalToConstant: 50),
+            bottomStackView.heightAnchor.constraint(equalToConstant: 150),
+            bottomStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            bottomStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            bottomStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            
+        ])
+        
+        let topView = UIView()
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(topView)
+        
+        topView.backgroundColor = .purple
+        
+        NSLayoutConstraint.activate([
+            topView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: 0),
+            topView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            topView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            topView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
+        ])
         
         
     }
