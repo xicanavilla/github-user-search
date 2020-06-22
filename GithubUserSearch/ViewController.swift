@@ -12,9 +12,30 @@ class ViewController: UIViewController {
     
     let salvadorsTableViewData = ["Las Vegas", "Houston", "Williamstown", "San Diego", "San Francisco", "Los Angeles", "Minneapolis", "Charleston", "New York City", "Newark"]
     
+    let margaritasTableViewData = ["Graciela", "Martha", "Alma Silvia", "Lourdes", "Margarita", "Yoli", "Jose Manuel", "Salvador", "Eugenio", "Mr. Bean", "Beto", "Giorgio", "Javier", "Luis"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        salvadorsSetupView()
+        margaritasSetupView()
+        
+    }
+    
+    private func margaritasSetupView() {
+        view.backgroundColor = UIColor.white
+        
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
+        ])
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.dataSource = self
         
     }
     
@@ -62,7 +83,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     //first method required by the protocol
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return salvadorsTableViewData.count //I want one cell for every item in the array
+        return margaritasTableViewData.count //I want one cell for every item in the array
     }
     
     //second method required for protocol
@@ -80,7 +101,7 @@ extension ViewController: UITableViewDataSource {
         //you find UITableviewCell out of the box has an optional text label
         //and an optional detailTextLabel
         //lets put some string in each label to display it
-        cell.textLabel?.text = "\(salvadorsTableViewData[indexPath.row])"
+        cell.textLabel?.text = "\(margaritasTableViewData[indexPath.row])"
         
         // "\()" is called string interpolation it basically gets data and converts it to a string
         return cell
