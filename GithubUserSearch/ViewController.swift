@@ -10,126 +10,90 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let salvadorsTableViewData = ["Las Vegas", "Houston", "Williamstown", "San Diego", "San Francisco", "Los Angeles", "Minneapolis", "Charleston", "New York City", "Newark"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        margaritasSetupView()
-        // Do any additional setup after loading the view.
+        salvadorsSetupView()
         
     }
     
-    func salvadorsSetupView() {
-        view.backgroundColor = .white
+    private func salvadorsSetupView() {
+        view.backgroundColor = UIColor.white
         
-        // Layouts usually have say a view or stackview of a specific height
-        // at the top and then another view that takes up the rest of the screen
-        // this view will be variable height depending on the kind of device used
-        // unlike the view with the fixed height
-        
-        let topStackView = UIStackView()
-        topStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(topStackView) //you don't need to say self.view to access view property, only in a closure we'll see that later
-        
-        //Will set to 100 wide in a constraint
-        let leftTopView = UIView()
-        leftTopView.translatesAutoresizingMaskIntoConstraints = false //not sure if this is necessary but when in doubt do it
-        leftTopView.backgroundColor = .cyan
-        
-        //Will let this take up the rest of the width of the screen (width - 100) basically
-        let rightTopView = UIView()
-        rightTopView.translatesAutoresizingMaskIntoConstraints = false //same as the comment for leftView
-        rightTopView.backgroundColor = .orange
-        
-        //This is what you were asking about
-        let viewsForTopStack = [leftTopView, rightTopView]
-        for item in viewsForTopStack {
-            topStackView.addArrangedSubview(item)
-        }
+        //let's create a table view
+        let tableView = UITableView()
+        //it will display cells with each cell containing something from global vairable array salvadorsTableViewData
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            leftTopView.widthAnchor.constraint(equalToConstant: 100),
-            topStackView.heightAnchor.constraint(equalToConstant: 200),
-            topStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            topStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            topStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
         
-        //Comment everything below this line to see what it looks like up to this point
-        //You can comment all by highlighting the lines then command + /
+        //every table view has to register any cell that will be displayed in it
+        //we will use Apple's default cell UITableViewCell and has a matching reuse identifier
+        //the identifier is useful if you have more than one kind of cell
+        //here its pointless but still required, and it can be any string you want
+        //not just "cell"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         
-        let bottomView = UIView()
-        bottomView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bottomView)
+        //In order for the tableView to be aware of what to display it has to
+        //conform to a UITableViewDataSource Protocol
+        //A protocol is an agreement saying if a class has specific properties and methods
+        //then it conforms to that protocol
+        //Read this
+       // https://developer.apple.com/documentation/uikit/uitableviewdatasource
         
-        bottomView.backgroundColor = .magenta
-
-        //We want the bottom of topStackView to line up with the top of bottomView
-        //And bottomView should end at the bottom of the viewControllers view property
-
-        NSLayoutConstraint.activate([
-            bottomView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 0),
-            bottomView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            bottomView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-        ])
-        
-        
-        //Homework: make a bottom horizontal stackView with 150 tall with pinned to the
-        //bottom edges and have two views in the stackView, make the first one 50 wide
-        //and the second view take up the rest of the space
-        
-        //Afterwards add an additional view that starts at the top of the viewControllers
-        //view and then connects to the bottomStackView
-        
-        
-        
-        
-    }
-    
-    func margaritasSetupView() {
-        
-        let bottomStackView = UIStackView()
-        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bottomStackView)
-        
-        let leftBottomView = UIView()
-        leftBottomView.translatesAutoresizingMaskIntoConstraints = false
-        leftBottomView.backgroundColor = .darkGray
-        
-        let rightBottomView = UIView()
-        rightBottomView.translatesAutoresizingMaskIntoConstraints = false
-        rightBottomView.backgroundColor = .systemIndigo
-        
-        let viewsForBottomStack = [leftBottomView, rightBottomView]
-        for item in viewsForBottomStack {
-            bottomStackView.addArrangedSubview(item)
-        }
-        
-        NSLayoutConstraint.activate([
-            leftBottomView.widthAnchor.constraint(equalToConstant: 50),
-            bottomStackView.heightAnchor.constraint(equalToConstant: 150),
-            bottomStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            bottomStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            bottomStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            
-        ])
-        
-        let topView = UIView()
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(topView)
-        
-        topView.backgroundColor = .purple
-        
-        NSLayoutConstraint.activate([
-            topView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: 0),
-            topView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            topView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
-            topView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
-        ])
-        
+        //We will make the viewcontroller handle the tableview data source protocol methods
+        tableView.dataSource = self
+        //notice I created an extension at the bottom for ViewController to conform to
+        //UITableView DataSource protocl
         
     }
 
 
 }
 
+extension ViewController: UITableViewDataSource {
+    //first method required by the protocol
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return salvadorsTableViewData.count //I want one cell for every item in the array
+    }
+    
+    //second method required for protocol
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //if you don't match your identifier with the one in setupView it will crash or return nil can't remember
+        //Notice the language here its dequeue reusable cell
+        //That's because tablview cells get reused so your device doesn't run out
+        //of memeory
+        //Its super efficient
+        //make sure to use dequeueReusableCell(withIdentifier, forIndexpath) otherwise the other methods return an optional and you want
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        //https://developer.apple.com/documentation/uikit/uitableviewcell
+        //if you scroll down to Specifying Content for Standard Cell Styles
+        //you find UITableviewCell out of the box has an optional text label
+        //and an optional detailTextLabel
+        //lets put some string in each label to display it
+        cell.textLabel?.text = "\(salvadorsTableViewData[indexPath.row])"
+        
+        // "\()" is called string interpolation it basically gets data and converts it to a string
+        return cell
+        
+    }
+    
+    
+    //now that both methods are implemented we can say ViewController conforms to
+    //the UITableViewDataSource delegate
+    //You will always do this when working with tableviews
+    
+}
+
+
+//Homework: Create your own global variable data set array, then create your own setupView method and create a table View you'll have to reuse my extension but I encourage you to erase the inner parts of the code of the extension methods and for you to write them, feel free to add as many things to the table as possible
+//Id do this exercise a couple of times, being an iOS developer is mostly creating tables and hooking them up to some API, the UITableViewDataSource protocol is incredibly important, you should know that there are two required methods number of rows in section (it defaults to one section but can be changed by adding additional protocol methods) and cellForIndexpath
