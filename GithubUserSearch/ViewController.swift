@@ -82,8 +82,29 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
     //first method required by the protocol
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Margarita"
+        }else if section == 1 {
+            return "Salvador"
+        }else {
+            return nil
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return margaritasTableViewData.count //I want one cell for every item in the array
+        if section == 0 {
+            return margaritasTableViewData.count //I want one cell for every item in the array
+        }else if section == 1 {
+            return salvadorsTableViewData.count
+        }else {
+            return 0
+        }
     }
     
     //second method required for protocol
@@ -101,7 +122,14 @@ extension ViewController: UITableViewDataSource {
         //you find UITableviewCell out of the box has an optional text label
         //and an optional detailTextLabel
         //lets put some string in each label to display it
-        cell.textLabel?.text = "\(margaritasTableViewData[indexPath.row])"
+        
+        if indexPath.section == 0 {
+            
+            cell.textLabel?.text = "\(margaritasTableViewData[indexPath.row])"
+        }else if indexPath.section == 1 {
+            
+            cell.textLabel?.text = "\(salvadorsTableViewData[indexPath.row])"
+        }
         
         // "\()" is called string interpolation it basically gets data and converts it to a string
         return cell
