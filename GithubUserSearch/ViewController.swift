@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     let margaritasTableViewData = ["Graciela", "Martha", "Alma Silvia", "Lourdes", "Margarita", "Yoli", "Jose Manuel", "Salvador", "Eugenio", "Mr. Bean", "Beto", "Giorgio", "Javier", "Luis"]
     
+    let cousinsTableViewData = ["Sari", "Teffy", "Diana", "Fer", "Hugo", "Oscar", "Karla", "Juan", "Claudia", "Arturo", "Paco", "Chava", "Alma", "Ireri"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         margaritasSetupView()
@@ -88,13 +90,15 @@ extension ViewController: UITableViewDataSource {
             return "Margarita"
         }else if section == 1 {
             return "Salvador"
+        }else if section == 2 {
+            return "Cousins"
         }else {
             return nil
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,6 +106,8 @@ extension ViewController: UITableViewDataSource {
             return margaritasTableViewData.count //I want one cell for every item in the array
         }else if section == 1 {
             return salvadorsTableViewData.count
+        }else if section == 2 {
+            return cousinsTableViewData.count
         }else {
             return 0
         }
@@ -129,6 +135,10 @@ extension ViewController: UITableViewDataSource {
         }else if indexPath.section == 1 {
             
             cell.textLabel?.text = "\(salvadorsTableViewData[indexPath.row])"
+        }else if indexPath.section == 2 {
+            
+            cell.textLabel?.text =
+                "\(cousinsTableViewData[indexPath.row])"
         }
         
         // "\()" is called string interpolation it basically gets data and converts it to a string
